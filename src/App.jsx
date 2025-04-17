@@ -22,7 +22,7 @@ export default function App() {
   //function logout
   const logoutHanlder = async () => {
     const token = localStorage.getItem("token");
-    
+
 
     if (!token) {
       console.error('No token found');
@@ -30,18 +30,18 @@ export default function App() {
     }
 
     try {
-    //set axios header dengan type Authorization + Bearer token
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    //fetch Rest API
-    await axios.post('http://localhost:8000/api/logout');
-    
-        //remove token from localStorage
-        localStorage.removeItem("token");
-        localStorage.removeItem("is_administrator");
+      //set axios header dengan type Authorization + Bearer token
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      //fetch Rest API
+      await axios.post('http://localhost:8000/api/logout');
+
+      //remove token from localStorage
+      localStorage.removeItem("token");
+      localStorage.removeItem("is_administrator");
 
 
-        //redirect halaman login
-        navigate('/login');
+      //redirect halaman login
+      navigate('/login');
     } catch (error) {
       console.error('Logout failed', error);
     }
@@ -68,32 +68,26 @@ export default function App() {
               </button>
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
+                  <li className="nav-item">
                     <Link to="/dashboard" className="nav-link active" aria-current="page">Dashboard</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/pengunjungs" className="nav-link active" aria-current="page">PENGUNJUNG</Link>
+                    <Link to="/pengunjungs" className="nav-link active" aria-current="page">Pengunjung</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/kunjungans" className="nav-link active" aria-current="page">KUNJUNGAN </Link>
+                    <Link to="/kunjungans" className="nav-link active" aria-current="page">Kunjungan</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/pengumumans" className="nav-link active" aria-current="page">PENGUMUMAN</Link>
+                    <Link to="/pengumumans" className="nav-link active" aria-current="page">Pengumuman</Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/dokumentasis" className="nav-link active" aria-current="page">DOKUMENTASI</Link>
+                    <Link to="/dokumentasis" className="nav-link active" aria-current="page">Dokumentasi</Link>
                   </li>
 
-                  {/* <li className="nav-item">
-                    <Link to="/barangs" className="nav-link active" aria-current="page">BARANG</Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link to="/peminjamans" className="nav-link active" aria-current="page">PEMINJAMAN</Link>
-                  </li> */}
-                  { isAdmin &&(
-                  <li className="nav-item">
-                    <Link to="/petugas" className="nav-link active" aria-current="page">PETUGAS</Link>
-                  </li>
+                  {isAdmin && (
+                    <li className="nav-item">
+                      <Link to="/petugas" className="nav-link active" aria-current="page">Petugas</Link>
+                    </li>
                   )}
                 </ul>
                 <ul className="navbar-nav ms-auto mb-2 mb-lg-0" role="search">

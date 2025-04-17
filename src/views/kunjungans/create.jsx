@@ -60,7 +60,6 @@ export default function KunjunganCreate() {
         await api.post('/api/kunjungans', formData)
             .then(() => {
                 
-                //redirect to posts index
                 navigate('/kunjungans');
 
             })

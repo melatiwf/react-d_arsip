@@ -8,8 +8,8 @@ export default function KunjunganIndex() {
 
   const fetchDataKunjungans = async () => {
     try {
-      const response = await api.post("/api/kunjungans");
-      setKunjungans(response.data.data);
+      const response = await api.get("/api/kunjungans");
+      setKunjungans(response.data.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -33,7 +33,7 @@ export default function KunjunganIndex() {
             timer: 3000,
             showConfirmButton: false,
           });
-          fetchDataKunjungans(); // Refresh data setelah menghapus
+          fetchDataKunjungans(); 
         } catch (error) {
           Swal.fire({
             title: "Gagal Menghapus Data",
@@ -58,11 +58,11 @@ export default function KunjunganIndex() {
             ADD NEW KUNJUNGAN
           </Link>
           <td>
-          <Link to="/kunjungans/DataTable" className="btn btn-md btn-success rounded shadow border-0 mb-3">
-            REKAP DATA KUNJUNGAN
-          </Link>
+            <Link to="/kunjungans/DataTable" className="btn btn-md btn-success rounded shadow border-0 mb-3">
+              REKAP DATA KUNJUNGAN
+            </Link>
           </td>
-          
+
           <div className="row">
             {/* Looping  dan menampilkannya dalam card */}
             {kunjungans.length > 0 ? (
@@ -76,10 +76,10 @@ export default function KunjunganIndex() {
                       style={{ height: "250px", objectFit: "cover" }}
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{kunjungan.nama_instansi}</h5>
+                      <h4 className="card-title"><strong>{kunjungan.nama_instansi}</strong></h4>
                       <p className="card-text">{kunjungan.tanggal}</p>
-                      <p className="card-text">{kunjungan.tujuan}</p>
-                      <p className="card-text">Pengunjung: {kunjungan.pengunjungs_id}</p>
+                      <p className="card-text">Tujuan: {kunjungan.tujuan_kunjungan}</p>
+                      <p className="card-text">Pengunjung: {kunjungan.pengunjungs.nama}</p>
                       <div className="d-flex justify-content-between">
                         <Link to={`/kunjungans/edit/${kunjungan.id}`} className="btn btn-sm btn-primary">
                           <i className="fas fa-edit"></i> EDIT
