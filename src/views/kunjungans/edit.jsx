@@ -23,22 +23,22 @@ export default function KunjunganEdit() {
         //fetch data from API with Axios
         await api.get('/api/pengunjungs')
             .then(response => {
-                
+
                 //assign response data to state "posts"
                 setPengunjungs(response.data.data.data);
 
             })
-        
+
     }
 
-        //run hook useEffect
-        useEffect(() => {
-        
-            //call method "fetchDataPosts"
-            fetchDataPengunjung();
+    //run hook useEffect
+    useEffect(() => {
 
-        }, []);
-    
+        //call method "fetchDataPosts"
+        fetchDataPengunjung();
+
+    }, []);
+
 
 
     //state validation
@@ -52,11 +52,11 @@ export default function KunjunganEdit() {
 
     //method fetchDetailPost
     const fetchDetailKunjungan = async () => {
-        
+
         //fetch data
         await api.get(`/api/kunjungans/${id}`)
             .then(response => {
-                
+
                 //assign to state
                 setImage(response.data.data.image);
                 setNama_instansi(response.data.data.nama_instansi);
@@ -69,7 +69,7 @@ export default function KunjunganEdit() {
 
     //hook useEffect
     useEffect(() => {
-        
+
         //call method "fetchDetailPost"
         fetchDetailKunjungan();
 
@@ -83,7 +83,7 @@ export default function KunjunganEdit() {
     //method update post
     const updateKunjungan = async (e) => {
         e.preventDefault();
-        
+
         //init FormData
         const formData = new FormData();
 
@@ -96,15 +96,15 @@ export default function KunjunganEdit() {
         formData.append('_method', 'PUT')
 
         //send data with API
-        await api.get(`/api/kunjungans/${id}`, formData)
+        await api.post(`/api/kunjungans/${id}`, formData)
             .then(() => {
-                
+
                 //redirect to posts index
                 navigate('/kunjungans');
 
             })
             .catch(error => {
-                
+
                 //set errors response to state "errors"
                 setErrors(error.response.data);
             })
@@ -118,22 +118,28 @@ export default function KunjunganEdit() {
                         <div className="card-body">
                             <form onSubmit={updateKunjungan}>
 
-                            <div className="mb-3">
+                                <div className="mb-3">
                                     <label className="form-label fw-bold">Image</label>
-                                    <input type="file" onChange={handleFileChange} className="form-control"/>
+                                    <input type="file" onChange={handleFileChange} className="form-control" />
+                                    {
+                                        image && (
+                                            <div className="mt-2">
+                                                <img src={image} alt="Preview" width="150" />
+                                            </div>
+                                        )
+                                    }
                                     {
                                         errors.image && (
                                             <div className="alert alert-danger mt-2">
                                                 {errors.image[0]}
                                             </div>
                                         )
-                                    }
-                                </div>
-                                
-                            
-                            <div className="mb-3">
+                                    }                                </div>
+
+
+                                <div className="mb-3">
                                     <label className="form-label fw-bold">Nama Instansi</label>
-                                    <input type="text" className="form-control"value={nama_instansi} onChange={(e) => setNama_instansi(e.target.value)} placeholder="Nama Instansi"/>
+                                    <input type="text" className="form-control" value={nama_instansi} onChange={(e) => setNama_instansi(e.target.value)} placeholder="Nama Instansi" />
                                     {
                                         errors.nama_instansi && (
                                             <div className="alert alert-danger mt-2">
@@ -145,7 +151,7 @@ export default function KunjunganEdit() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Tanggal</label>
-                                    <input type="date" className="form-control"value={tanggal} onChange={(e) => setTanggal(e.target.value)} placeholder="Tanggal"/>
+                                    <input type="date" className="form-control" value={tanggal} onChange={(e) => setTanggal(e.target.value)} placeholder="Tanggal" />
                                     {
                                         errors.tanggal && (
                                             <div className="alert alert-danger mt-2">
@@ -157,7 +163,7 @@ export default function KunjunganEdit() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Tujuan Kunjungan</label>
-                                    <input type="num" className="form-control"value={tujuan_kunjungan} onChange={(e) => setTujuan_kunjungan(e.target.value)} placeholder="Tujuan Kunjungan"/>
+                                    <input type="num" className="form-control" value={tujuan_kunjungan} onChange={(e) => setTujuan_kunjungan(e.target.value)} placeholder="Tujuan Kunjungan" />
                                     {
                                         errors.tujuan_kunjungan && (
                                             <div className="alert alert-danger mt-2">
@@ -169,20 +175,20 @@ export default function KunjunganEdit() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Pengunjung</label>
-                                    <select id= 'pengunjungs_id' className="form-control" onChange={(e) => setPengunjungs_id(e.target.value)}  value={pengunjungs_id}  >
-                                    <option value="">--Silahkan Pilih --</option>
-                                    {
-                                       pengunjungs.length > 0
-                                       ?   pengunjungs.map((pengunjungs) => (
-                                        <option value={pengunjungs.id}>{pengunjungs.nama}</option>
-                                                   
-                                                   
-                                           ))
-                                        :<option>Data belum tersedia</option>
-                                    }
+                                    <select id='pengunjungs_id' className="form-control" onChange={(e) => setPengunjungs_id(e.target.value)} value={pengunjungs_id}  >
+                                        <option value="">--Silahkan Pilih --</option>
+                                        {
+                                            pengunjungs.length > 0
+                                                ? pengunjungs.map((pengunjungs) => (
+                                                    <option value={pengunjungs.id}>{pengunjungs.nama}</option>
+
+
+                                                ))
+                                                : <option>Data belum tersedia</option>
+                                        }
                                     </select>
                                 </div>
-                                
+
 
                                 <button type="submit" className="btn btn-md btn-primary rounded-sm shadow border-0">Update</button>
                             </form>

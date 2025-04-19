@@ -33,7 +33,7 @@ export default function PengunjungEdit() {
     const fetchDetailPengunjung = async () => {
         
         //fetch data
-        await api.get(`/api/pengunjung/${id}`)
+        await api.get(`/api/pengunjungs/${id}`)
             .then(response => {
                 
                 //assign to state

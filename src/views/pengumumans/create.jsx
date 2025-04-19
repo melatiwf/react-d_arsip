@@ -13,7 +13,7 @@ export default function PengumumanCreate() {
     const [image, setImage] = useState('');
     const [judul, setJudul] = useState('');
     const [tanggal_dibuat, setTanggal_dibuat] = useState('');
-    const [tampil_hingga, setTampil_hingga] = useState('');    
+    const [tampil_hingga, setTampil_hingga] = useState('');
 
     //state validation
     const [errors, setErrors] = useState([]);
@@ -29,7 +29,7 @@ export default function PengumumanCreate() {
     //method store post
     const storePengumuman = async (e) => {
         e.preventDefault();
-        
+
         //init FormData
         const formData = new FormData();
 
@@ -42,13 +42,13 @@ export default function PengumumanCreate() {
         //send data with API
         await api.post('/api/pengumumans', formData)
             .then(() => {
-                
+
                 //redirect to posts index
                 navigate('/pengumumans');
 
             })
             .catch(error => {
-                
+
                 //set errors response to state "errors"
                 setErrors(error.response.data);
             })
@@ -61,10 +61,10 @@ export default function PengumumanCreate() {
                     <div className="card border-0 rounded shadow">
                         <div className="card-body">
                             <form onSubmit={storePengumuman}>
-                            
-                            <div className="mb-3">
+
+                                <div className="mb-3">
                                     <label className="form-label fw-bold">Image</label>
-                                    <input type="file" onChange={handleFileChange} className="form-control"/>
+                                    <input type="file" onChange={handleFileChange} className="form-control" />
                                     {
                                         errors.image && (
                                             <div className="alert alert-danger mt-2">
@@ -76,7 +76,7 @@ export default function PengumumanCreate() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Judul</label>
-                                    <input type="text" className="form-control" onChange={(e) => setJudul(e.target.value)} placeholder="Judul"/>
+                                    <input type="text" className="form-control" onChange={(e) => setJudul(e.target.value)} placeholder="Judul" />
                                     {
                                         errors.judul && (
                                             <div className="alert alert-danger mt-2">
@@ -88,7 +88,7 @@ export default function PengumumanCreate() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Tanggal Dibuat</label>
-                                    <input type="date" className="form-control" onChange={(e) => setTanggal_dibuat(e.target.value)} placeholder="Tanggal Dibuat"/>
+                                    <input type="date" className="form-control" onChange={(e) => setTanggal_dibuat(e.target.value)} placeholder="Tanggal Dibuat" />
                                     {
                                         errors.tanggal_dibuat && (
                                             <div className="alert alert-danger mt-2">
@@ -99,8 +99,8 @@ export default function PengumumanCreate() {
                                 </div>
 
                                 <div className="mb-3">
-                                    <label className="form-label fw-bold">Tampil Hingga</label>
-                                    <input type="text" className="form-control" onChange={(e) => setTampil_hingga(e.target.value)} placeholder="Tampil Hingga"/>
+                                    <label className="form-label fw-bold">Tanggal Dibuat</label>
+                                    <input type="date" className="form-control" onChange={(e) => setTampil_hingga(e.target.value)} placeholder="Tampil Hingga" />
                                     {
                                         errors.tampil_hingga && (
                                             <div className="alert alert-danger mt-2">

@@ -63,7 +63,7 @@ export default function DokumentasiIndex() {
                                                 <p className="card-text" style={{ color: '#FFF8DC', fontFamily: 'Georgia, serif', fontSize: '14px' }}>{dokumentasi.deskripsi}</p>
                                                 <p className="card-text" style={{ fontSize: '12px', color: '#FFF8DC' }}>{dokumentasi.tanggal}</p>
                                                 <div className="d-flex justify-content-between mt-3">
-                                                    <Link to={`/dokumetasis/edit/${dokumentasi.id}`} className="btn btn-sm btn-primary rounded-sm shadow border-0">EDIT</Link>
+                                                    <Link to={`/dokumentasis/edit/${dokumentasi.id}`} className="btn btn-sm btn-primary rounded-sm shadow border-0">EDIT</Link>
                                                     <Link to={`/dokumentasis/detail/${dokumentasi.id}`} className="btn btn-sm btn-primary rounded-sm shadow border-0">LIHAT</Link>
                                                     <button onClick={() => deleteDokumentasi(dokumentasi.id)} className="btn btn-sm btn-danger rounded-sm shadow border-0">DELETE</button>
                                                 </div>

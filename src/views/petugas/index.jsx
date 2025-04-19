@@ -9,7 +9,7 @@ export default function PetugasIndex() {
 
     // Define method untuk mengambil data petugas
     const fetchDataPetugas = async () => {
-        await api.get('/api/petugas')
+        await api.get('/api/users')
             .then(response => {
                 setPetugas(response.data.data.data);
             });

@@ -90,9 +90,16 @@ export default function KunjunganEdit() {
                         <div className="card-body">
                             <form onSubmit={updatePengumuman}>
                                 
-                            <div className="mb-3">
+                                <div className="mb-3">
                                     <label className="form-label fw-bold">Image</label>
                                     <input type="file" onChange={handleFileChange} className="form-control"/>
+                                    {
+                                        image && (
+                                            <div className="mt-2">
+                                                <img src={image} alt="Preview" width="150" />
+                                            </div>
+                                        )
+                                    }
                                     {
                                         errors.image && (
                                             <div className="alert alert-danger mt-2">
@@ -104,7 +111,13 @@ export default function KunjunganEdit() {
                             
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Judul</label>
-                                    <input type="text" className="form-control" onChange={(e) => setJudul(e.target.value)} placeholder="Judul"/>
+                                    <input 
+                                        type="text" 
+                                        className="form-control" 
+                                        value={judul} 
+                                        onChange={(e) => setJudul(e.target.value)} 
+                                        placeholder="Judul"
+                                    />
                                     {
                                         errors.judul && (
                                             <div className="alert alert-danger mt-2">
@@ -116,7 +129,13 @@ export default function KunjunganEdit() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Tanggal Dibuat</label>
-                                    <input type="date" className="form-control" onChange={(e) => setTanggal_dibuat(e.target.value)} placeholder="Tanggal Dibuat"/>
+                                    <input 
+                                        type="date" 
+                                        className="form-control" 
+                                        value={tanggal_dibuat} 
+                                        onChange={(e) => setTanggal_dibuat(e.target.value)} 
+                                        placeholder="Tanggal Dibuat"
+                                    />
                                     {
                                         errors.tanggal_dibuat && (
                                             <div className="alert alert-danger mt-2">
@@ -128,7 +147,13 @@ export default function KunjunganEdit() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Tampil Hingga</label>
-                                    <input type="date" className="form-control" onChange={(e) => setTampil_hingga(e.target.value)} placeholder="Tampil Hingga"/>
+                                    <input 
+                                        type="date" 
+                                        className="form-control" 
+                                        value={tampil_hingga} 
+                                        onChange={(e) => setTampil_hingga(e.target.value)} 
+                                        placeholder="Tampil Hingga"
+                                    />
                                     {
                                         errors.tampil_hingga && (
                                             <div className="alert alert-danger mt-2">

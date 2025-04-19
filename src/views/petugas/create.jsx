@@ -37,7 +37,7 @@ export default function PetugasCreate() {
 
 
         //send data with API
-        await api.post('/api/petugas', formData)
+        await api.post('/api/users', formData)
             .then(() => {
                 
                 //redirect to posts index

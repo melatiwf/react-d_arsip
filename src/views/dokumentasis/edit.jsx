@@ -14,7 +14,7 @@ export default function DokumentasiEdit() {
     const [judul, setJudul] = useState('');
     const [deskripsi, setDeskripsi] = useState('');
     const [tanggal, setTanggal] = useState('');
-    
+
 
 
     //state validation
@@ -28,11 +28,11 @@ export default function DokumentasiEdit() {
 
     //method fetchDetailPost
     const fetchDetailDokumentasi = async () => {
-        
+
         //fetch data
         await api.get(`/api/dokumentasis/${id}`)
             .then(response => {
-                
+
                 //assign to state
                 setImage(response.data.data.image);
                 setJudul(response.data.data.judul);
@@ -43,7 +43,7 @@ export default function DokumentasiEdit() {
 
     //hook useEffect
     useEffect(() => {
-        
+
         //call method "fetchDetailPost"
         fetchDetailDokumentasi();
 
@@ -57,7 +57,7 @@ export default function DokumentasiEdit() {
     //method update post
     const updateDokumentasi = async (e) => {
         e.preventDefault();
-        
+
         //init FormData
         const formData = new FormData();
 
@@ -71,13 +71,13 @@ export default function DokumentasiEdit() {
         //send data with API
         await api.get(`/api/dokumentasis/${id}`, formData)
             .then(() => {
-                
+
                 //redirect to posts index
                 navigate('/dokumentasis');
 
             })
             .catch(error => {
-                
+
                 //set errors response to state "errors"
                 setErrors(error.response.data);
             })
@@ -90,10 +90,17 @@ export default function DokumentasiEdit() {
                     <div className="card border-0 rounded shadow">
                         <div className="card-body">
                             <form onSubmit={updateDokumentasi}>
-                                
-                            <div className="mb-3">
+
+                                <div className="mb-3">
                                     <label className="form-label fw-bold">Image</label>
-                                    <input type="file" onChange={handleFileChange} className="form-control"/>
+                                    <input type="file" onChange={handleFileChange} className="form-control" />
+                                    {
+                                        image && (
+                                            <div className="mt-2">
+                                                <img src={image} alt="Preview" width="150" />
+                                            </div>
+                                        )
+                                    }
                                     {
                                         errors.image && (
                                             <div className="alert alert-danger mt-2">
@@ -102,10 +109,10 @@ export default function DokumentasiEdit() {
                                         )
                                     }
                                 </div>
-                            
-                            <div className="mb-3">
+
+                                <div className="mb-3">
                                     <label className="form-label fw-bold">Judul</label>
-                                    <input type="text" className="form-control"value={judul} onChange={(e) => setJudul(e.target.value)} placeholder="Judul"/>
+                                    <input type="text" className="form-control" value={judul} onChange={(e) => setJudul(e.target.value)} placeholder="Judul" />
                                     {
                                         errors.judul && (
                                             <div className="alert alert-danger mt-2">
@@ -117,7 +124,7 @@ export default function DokumentasiEdit() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Deskripsi</label>
-                                    <input type="text" className="form-control"value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} placeholder="Deskripsi"/>
+                                    <input type="text" className="form-control" value={deskripsi} onChange={(e) => setDeskripsi(e.target.value)} placeholder="Deskripsi" />
                                     {
                                         errors.deskripsi && (
                                             <div className="alert alert-danger mt-2">
@@ -129,7 +136,7 @@ export default function DokumentasiEdit() {
 
                                 <div className="mb-3">
                                     <label className="form-label fw-bold">Tangggal</label>
-                                    <input type="num" className="form-control"value={tanggal} onChange={(e) => setTanggal(e.target.value)} placeholder="Tanggal"/>
+                                    <input type="num" className="form-control" value={tanggal} onChange={(e) => setTanggal(e.target.value)} placeholder="Tanggal" />
                                     {
                                         errors.tanggal && (
                                             <div className="alert alert-danger mt-2">
@@ -139,10 +146,10 @@ export default function DokumentasiEdit() {
                                     }
                                 </div>
 
-                               
 
 
-                                
+
+
 
                                 <button type="submit" className="btn btn-md btn-primary rounded-sm shadow border-0">Update</button>
                             </form>
