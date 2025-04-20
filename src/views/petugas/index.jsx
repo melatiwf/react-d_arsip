@@ -22,7 +22,7 @@ export default function PetugasIndex() {
 
     // Method untuk menghapus petugas
     const deletePetugas = async (id) => {
-        await api.delete(`/api/petugas/${id}`)
+        await api.delete(`/api/users/${id}`)
             .then(() => {
                 fetchDataPetugas(); // Refresh data setelah penghapusan
             });

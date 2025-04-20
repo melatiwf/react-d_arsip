@@ -29,7 +29,7 @@ export default function PetugasEdit() {
     const fetchDetailPetugas = async () => {
         
         //fetch data
-        await api.get(`/api/petugas/${id}`)
+        await api.get(`/api/users/${id}`)
             .then(response => {
                 
                 //assign to state
@@ -64,7 +64,7 @@ export default function PetugasEdit() {
         formData.append('_method', 'PUT')
 
         //send data with API
-        await api.post(`/api/petugas/${id}`, formData)
+        await api.post(`/api/users/${id}`, formData)
             .then(() => {
                 
                 //redirect to posts index

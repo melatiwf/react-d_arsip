@@ -69,7 +69,7 @@ export default function DokumentasiEdit() {
         formData.append('_method', 'PUT')
 
         //send data with API
-        await api.get(`/api/dokumentasis/${id}`, formData)
+        await api.post(`/api/dokumentasis/${id}`, formData)
             .then(() => {
 
                 //redirect to posts index
